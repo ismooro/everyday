@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prépa ATS, 10 exercices par jour</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&family=Source+Serif+4:wght@400;600&display=swap">
+<style>
+:root{--bg:#13161d;--cd:#1b1f29;--bd:#2c3242;--tx:#e9ebf1;--mu:#8f98ad;--ac:#8da2fb;--on:#10131a;--ok:#4cc38a;--ko:#f07178;--ui:Figtree,system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:dark;box-sizing:border-box;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+:root[data-theme=light]{--bg:#f4f5f8;--cd:#fff;--bd:#d9dde7;--tx:#1b1f2a;--mu:#5a6379;--ac:#3f5bd8;--on:#fff;--ok:#10875a;--ko:#c92a4a;color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.65 "Source Serif 4",Georgia,serif}
+#app{max-width:44rem;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-family:var(--ui)}
+h1{font-size:1.1rem;margin:0}h2{margin:0 0 .3em}
+header div{display:flex;gap:12px;align-items:center}
+button,input,.ch,.fb,summary,.g,.m{font-family:var(--ui)}
+button{font-size:.95rem;color:var(--tx);background:var(--cd);border:1px solid var(--bd);border-radius:8px;padding:9px 14px;cursor:pointer}
+button:hover:not(:disabled){border-color:var(--ac)}
+button:disabled{cursor:default}
+button.p{background:var(--ac);border-color:var(--ac);color:var(--on);font-weight:600}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.card{background:var(--cd);border:1px solid var(--bd);border-radius:12px;padding:18px;margin-bottom:14px}
+.bar{display:flex;gap:4px;margin-bottom:14px}
+.bar i{flex:1;height:8px;border-radius:2px;background:var(--bd)}
+.bar .ok{background:var(--ok)}.bar .ko{background:var(--ko)}.bar .cur{background:var(--ac)}
+.ch{display:inline-block;font-size:.78rem;padding:2px 10px;border:1px solid var(--bd);border-radius:99px;color:var(--mu);margin:0 6px 8px 0}
+.ch:first-child{color:var(--ac);border-color:var(--ac)}
+.q{font-size:1.12rem;margin:.4em 0 1em}
+.o{display:block;width:100%;text-align:left;margin:8px 0;padding:11px 14px}
+.o.ok{border-color:var(--ok);color:var(--ok)}.o.ko{border-color:var(--ko);color:var(--ko)}
+.o:disabled:not(.ok):not(.ko){opacity:.6}
+.row{display:flex;gap:8px}
+input{flex:1;min-width:0;font-size:1rem;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:9px 12px}
+.hint{border-left:3px solid var(--ac);background:var(--bg);padding:8px 12px;margin:12px 0;border-radius:4px}
+.act{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:12px}
+.fb{font-weight:600;margin:14px 0 0}.fb.ok{color:var(--ok)}.fb.ko{color:var(--ko)}
+.mu{color:var(--mu);font-weight:400}
+.c{padding-left:1.3em;margin:10px 0}.c li{margin:10px 0}
+.big{font-size:3.2rem;line-height:1.1;font-weight:600;margin:.1em 0 .3em}
+summary{cursor:pointer;color:var(--mu)}
+.g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0;color:var(--mu);font-size:.85rem}
+.g b{display:block;color:var(--tx);font-size:1.4rem}
+.m{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:.9rem}
+.m span{width:7rem}.m div{flex:1;height:8px;border-radius:4px;background:var(--bd)}.m i{display:block;height:100%;border-radius:4px;background:var(--ac)}
+.hd{display:flex;align-items:flex-end;gap:4px;height:64px}
+.hd i{flex:1;min-height:3px;border-radius:2px 2px 0 0;background:var(--ac)}
+mjx-container[display=true]{max-width:100%;overflow-x:auto;overflow-y:hidden}
+.sv{display:block;width:100%;max-width:34rem;height:auto;margin:14px auto;color:var(--tx)}
+.sv rect,.sv circle,.sv path{fill:none;stroke:currentColor;stroke-width:1.6}
+.sv .a{fill:currentColor}
+.sv text{fill:currentColor;stroke:none;font:16px "Source Serif 4",Georgia,serif;text-anchor:middle}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+window.MathJax={tex:{inlineMath:[["$","$"]]},options:{enableMenu:false},startup:{pageReady:()=>MathJax.startup.defaultPageReady().then(()=>{window.mjOK=1;window.typeset&&typeset()})}};
+</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<script>
+/* ============ 1. BANQUE D’EXERCICES (ajoute tes objets ici) ============
+   ty: "qcm" (o = choix, a = index juste) | "num" (a = valeur, tol = tolérance absolue, u = unité)
+       | "ecrit" (auto-évaluation après corrigé) ; h = indice ; c = corrigé en <li> + LaTeX */
+const R=String.raw;
+/* Schémas-blocs SVG : ar = flèche, bx = bloc (texte ou [numérateur, dénominateur]),
+   loop(g, f) = asservissement (g chaîne directe, f retour ; absent = retour unitaire), chain([blocs]) = blocs en série */
+const ar=(...p)=>{const[x,y]=p[p.length-1],[u,v]=p[p.length-2],a=Math.sign(x-u),b=Math.sign(y-v);return`<path d="M${p.map(q=>q.join(" ")).join("L")}"/><path class="a" d="M${x} ${y}l${-9*a-4.5*b} ${-9*b+4.5*a}l${9*b} ${-9*a}z"/>`};
+const bx=(x,y,w,h,l)=>{const m=x+w/2,c=y+h/2;return`<rect x="${x}" y="${y}" width="${w}" height="${h}"/>`+(typeof l=="string"?`<text x="${m}" y="${c+5}">${l}</text>`:`<text x="${m}" y="${c-5}">${l[0]}</text><path d="M${x+14} ${c}H${x+w-14}"/><text x="${m}" y="${c+16}">${l[1]}</text>`)};
+const loop=(g,f,i="E(p)",o="S(p)")=>`<svg class="sv" viewBox="0 0 560 150" role="img" aria-label="Schéma-bloc d’un asservissement"><circle cx="110" cy="45" r="11"/>${bx(180,20,150,50,g)}${ar([14,45],[99,45])}${ar([121,45],[180,45])}${ar([330,45],[546,45])}${f?ar([420,45],[420,115],[325,115])+bx(205,92,120,46,f)+ar([205,115],[110,115],[110,56]):ar([420,45],[420,115],[110,115],[110,56])}<circle class="a" cx="420" cy="45" r="3.5"/><text x="44" y="35">${i}</text><text x="150" y="35">ε(p)</text><text x="514" y="35">${o}</text><text x="91" y="38">+</text><text x="122" y="77">−</text></svg>`;
+const chain=(b,i="E(p)",o="S(p)")=>{const n=b.length,w=Math.min(230,(450-45*(n-1))/n),x0=(560-n*w-45*(n-1))/2,e=560-x0;return`<svg class="sv" viewBox="0 0 560 90" role="img" aria-label="Schéma-bloc en série">${b.map((l,k)=>{const s=x0+k*(w+45);return bx(s,20,w,50,l)+ar([k?s-45:14,45],[s,45])}).join("")}${ar([e,45],[546,45])}<text x="${(14+x0)/2}" y="35">${i}</text><text x="${(e+546)/2}" y="35">${o}</text></svg>`};
+const EX=[
+{id:"m1",m:"Maths",t:"Intégrales",ty:"num",
+q:R`Calculer $I=\displaystyle\int_0^1 x^2e^{x}\,dx$ (valeur numérique à $10^{-3}$ près).`,
+a:Math.E-2,tol:.002,
+h:R`Deux intégrations par parties successives, en dérivant le polynôme.`,
+c:R`<li>IPP avec $u=x^2$, $v'=e^x$ : $I=\big[x^2e^x\big]_0^1-2\displaystyle\int_0^1xe^x\,dx$.</li><li>Seconde IPP : $\displaystyle\int_0^1xe^x\,dx=\big[xe^x\big]_0^1-\int_0^1e^x\,dx=e-(e-1)=1$.</li><li>Donc $I=e-2\approx0{,}718$.</li>`},
+{id:"m2",m:"Maths",t:"Développements limités",ty:"qcm",
+q:R`Le développement limité de $f(x)=e^x\cos x$ en $0$ à l’ordre $2$ est :`,
+o:R`$1+x+x^2$¦$1+x$¦$1+x+\frac{x^2}{2}$¦$1+x-\frac{x^2}{2}$`.split("¦"),a:1,
+h:R`Multiplie les deux DL à l’ordre 2 et regroupe les termes en $x^2$.`,
+c:R`<li>$e^x=1+x+\frac{x^2}{2}+o(x^2)$ et $\cos x=1-\frac{x^2}{2}+o(x^2)$.</li><li>Coefficient de $x^2$ dans le produit : $\frac12\cdot1+1\cdot\left(-\frac12\right)=0$.</li><li>Donc $f(x)=1+x+o(x^2)$ : le terme en $x^2$ s’annule.</li>`},
+{id:"m3",m:"Maths",t:"Algèbre linéaire",ty:"ecrit",
+q:R`Soit $A=\begin{pmatrix}1&2\\3&0\end{pmatrix}$. Diagonaliser $A$ (valeurs propres, vecteurs propres, $P$ et $D$), puis exprimer $A^n$.`,
+h:R`Polynôme caractéristique : $\lambda^2-\operatorname{tr}(A)\,\lambda+\det A$.`,
+c:R`<li>$\chi_A(\lambda)=\lambda^2-\lambda-6=(\lambda-3)(\lambda+2)$ : valeurs propres $3$ et $-2$, distinctes, donc $A$ est diagonalisable.</li><li>$E_3=\operatorname{Vect}\begin{pmatrix}1\\1\end{pmatrix}$ et $E_{-2}=\operatorname{Vect}\begin{pmatrix}2\\-3\end{pmatrix}$.</li><li>$P=\begin{pmatrix}1&2\\1&-3\end{pmatrix}$, $D=\operatorname{diag}(3,-2)$, $P^{-1}=\frac15\begin{pmatrix}3&2\\1&-1\end{pmatrix}$.</li><li>$A^n=PD^nP^{-1}=\dfrac15\begin{pmatrix}3^{n+1}+2(-2)^n&2\cdot3^n-2(-2)^n\\3^{n+1}-3(-2)^n&2\cdot3^n+3(-2)^n\end{pmatrix}$.</li>`},
+{id:"m4",m:"Maths",t:"Équations différentielles",ty:"num",
+q:R`Soit $y$ la solution de $y'+2y=e^{-x}$ vérifiant $y(0)=0$. Calculer $y(\ln 2)$.`,
+a:.25,tol:.001,
+h:R`Cherche une solution particulière de la forme $c\,e^{-x}$, puis ajoute la solution homogène $Ke^{-2x}$.`,
+c:R`<li>Équation homogène : $y_h=Ke^{-2x}$.</li><li>Solution particulière $y_p=ce^{-x}$ : $-c+2c=1$, donc $c=1$.</li><li>$y=e^{-x}+Ke^{-2x}$ et $y(0)=0$ donne $K=-1$.</li><li>$y(\ln2)=e^{-\ln2}-e^{-2\ln2}=\dfrac12-\dfrac14=0{,}25$.</li>`},
+{id:"p1",m:"Phys-Chimie",t:"Thermodynamique",ty:"qcm",
+q:R`Une mole de gaz parfait subit une détente isotherme réversible, à la température $T$, de $V_1$ à $V_2=2V_1$. Le travail reçu par le gaz vaut :`,
+o:R`$W=+RT\ln2$¦$W=0$ car $\Delta U=0$¦$W=-RT\ln2$¦$W=-2RT$`.split("¦"),a:2,
+h:R`$\delta W=-P\,dV$ avec $P=\dfrac{nRT}{V}$.`,
+c:R`<li>$W=-\displaystyle\int_{V_1}^{V_2}P\,dV=-nRT\int_{V_1}^{V_2}\frac{dV}{V}=-nRT\ln\frac{V_2}{V_1}$.</li><li>Ici $n=1$ et $V_2/V_1=2$ : $W=-RT\ln2<0$ (le gaz fournit du travail).</li><li>Piège : $\Delta U=0$ donne $Q=-W$, pas $W=0$.</li>`},
+{id:"p2",m:"Phys-Chimie",t:"Électrocinétique",ty:"num",
+q:R`Un condensateur initialement déchargé, $C=100\,\mathrm{nF}$, est chargé à travers $R=10\,\mathrm{k\Omega}$ par un échelon $E=5\,\mathrm{V}$. À quel instant $t$ (en ms) a-t-on $u_C=4\,\mathrm{V}$ ?`,
+a:Math.log(5),tol:.02,u:"ms",
+h:R`$u_C(t)=E\left(1-e^{-t/\tau}\right)$ avec $\tau=RC$.`,
+c:R`<li>$\tau=RC=10^4\times10^{-7}=1\,\mathrm{ms}$.</li><li>$u_C=E\left(1-e^{-t/\tau}\right)=4$ donne $e^{-t/\tau}=1-\dfrac45=0{,}2$.</li><li>$t=\tau\ln5\approx1{,}61\,\mathrm{ms}$.</li>`},
+{id:"p3",m:"Phys-Chimie",t:"Acides et bases",ty:"qcm",
+q:R`Une solution d’acide éthanoïque ($pK_a=4{,}8$) a pour concentration $C=0{,}10\,\mathrm{mol\cdot L^{-1}}$. Pour un acide faiblement dissocié, son pH vaut :`,
+o:["2,9","1,0","4,8","5,8"],a:0,
+h:R`Écris $K_a=\dfrac{[H_3O^+]^2}{C}$ pour un acide faiblement dissocié.`,
+c:R`<li>$[H_3O^+]=\sqrt{K_aC}$, soit $pH=\dfrac12\left(pK_a-\log C\right)$.</li><li>$pH=\dfrac12(4{,}8+1)=2{,}9$.</li><li>Vérification : $\alpha=10^{-2{,}9}/0{,}10\approx1{,}3\,\%\ll1$, l’hypothèse tient.</li>`},
+{id:"s1",m:"S2I",t:"Schémas-blocs",ty:"num",
+q:R`Un asservissement à retour unitaire a pour chaîne directe $H(p)=\dfrac{10}{1+0{,}5\,p}$. Calculer l’erreur statique $\varepsilon_s$ (en %) pour un échelon unitaire.`,
+a:100/11,tol:.05,u:"%",f:loop("H(p)"),
+h:R`$\varepsilon_s=\lim_{p\to0}p\,\varepsilon(p)$ avec $\varepsilon(p)=\dfrac{E(p)}{1+H(p)}$.`,
+c:R`<li>$\varepsilon(p)=\dfrac{E(p)}{1+H(p)}$ avec $E(p)=\dfrac1p$.</li><li>Théorème de la valeur finale : $\varepsilon_s=\displaystyle\lim_{p\to0}\dfrac{1}{1+H(p)}=\dfrac1{11}\approx9{,}09\,\%$.</li><li>Schéma équivalent en boucle fermée :${chain([["10/11","1 + (0,5/11)p"]])}$\mathrm{FTBF}=\dfrac{H}{1+H}=\dfrac{10/11}{1+\frac{0{,}5}{11}p}$, soit $\tau_{BF}\approx45{,}5\,\mathrm{ms}$.</li>`},
+{id:"s2",m:"S2I",t:"Torseurs cinématiques",ty:"ecrit",
+q:R`Le solide $1$ tourne autour de l’axe $(O,\vec z)$ par rapport au bâti $0$, à la vitesse angulaire $\omega$. Écrire le torseur cinématique $\{\mathcal V_{1/0}\}$ en $O$, puis en $A$ tel que $\overrightarrow{OA}=a\,\vec x$.`,
+h:R`Changement de point : $\vec V(A)=\vec V(O)+\overrightarrow{AO}\wedge\vec\Omega$.`,
+c:R`<li>Pivot d’axe $(O,\vec z)$ : $\vec\Omega_{1/0}=\omega\,\vec z$ et $\vec V(O,1/0)=\vec 0$.</li><li>$\{\mathcal V_{1/0}\}_O=\left\{\begin{matrix}\omega\vec z\\ \vec 0\end{matrix}\right\}_O$.</li><li>$\vec V(A,1/0)=\vec 0+\overrightarrow{AO}\wedge\omega\vec z=-a\omega\,(\vec x\wedge\vec z)=a\omega\,\vec y$.</li><li>$\{\mathcal V_{1/0}\}_A=\left\{\begin{matrix}\omega\vec z\\ a\omega\vec y\end{matrix}\right\}_A$ : $A$ décrit un cercle de rayon $a$ à la vitesse $a\omega$.</li>`},
+{id:"s3",m:"S2I",t:"Fonctions de transfert",ty:"qcm",
+q:R`Pour $H(p)=\dfrac{100}{(1+10p)(1+0{,}01p)}$, quel couple (gain asymptotique aux basses fréquences ; première pulsation de cassure) est correct ?`,
+o:R`$100\,\mathrm{dB}$ ; $0{,}1\,\mathrm{rad/s}$¦$40\,\mathrm{dB}$ ; $10\,\mathrm{rad/s}$¦$20\,\mathrm{dB}$ ; $100\,\mathrm{rad/s}$¦$40\,\mathrm{dB}$ ; $0{,}1\,\mathrm{rad/s}$`.split("¦"),a:3,
+h:R`Gain en dB : $20\log_{10}K$ ; un facteur $1+\tau p$ casse en $\omega=1/\tau$.`,
+c:R`<li>$H(p)$ est le produit de trois blocs en série :${chain(["100",["1","1 + 10p"],["1","1 + 0,01p"]])}</li><li>Gain statique $K=100$ : $20\log_{10}100=40\,\mathrm{dB}$ (et non $100$ dB).</li><li>Cassures : $\omega_1=\dfrac1{10}=0{,}1\,\mathrm{rad/s}$ et $\omega_2=\dfrac1{0{,}01}=100\,\mathrm{rad/s}$.</li><li>La plus basse est $\omega_1$ : pente $0\to-20\,\mathrm{dB/dec}$, puis $-40\,\mathrm{dB/dec}$ après $\omega_2$.</li>`}
+];
+
+/* ============ 2. ÉTAT ET STOCKAGE (localStorage) ============ */
+const MAX=Math.min(10,EX.length),K="ats-top50-v1",app=document.getElementById("app"),X=Object.fromEntries(EX.map(e=>[e.id,e]));
+let S={},M="day",RV=[],U={};
+try{S=JSON.parse(localStorage.getItem(K))||{}}catch(e){}
+S.h=S.h||{};S.d=S.d||{};   /* h: dernier résultat par exercice ; d: blocs journaliers {ids, r} */
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const dk=d=>d.toLocaleDateString("sv-SE"),T=()=>dk(new Date());
+const bk=k=>{const d=new Date(k+"T12:00:00");d.setDate(d.getDate()-1);return dk(d)};
+const hs=s=>{let h=0;for(const c of s)h=Math.imul(31,h)+c.charCodeAt(0)|0;return Math.abs(h)};
+
+/* ============ 3. MOTEUR : bloc du jour, série, calculs ============ */
+/* priorité : jamais faits, puis ratés, puis réussis les plus anciens */
+const pr=e=>{const x=S.h[e.id];return(x?x.ok?2+x.t/1e14:1:0)+hs(T()+e.id)%100/1e3};
+const day=()=>S.d[T()]||(S.d[T()]={ids:[...EX].sort((a,b)=>pr(a)-pr(b)).slice(0,MAX).map(e=>e.id),r:{}});
+const fin=k=>{const d=S.d[k];return!!d&&Object.keys(d.r).length>=d.ids.length};
+const streak=()=>{let k=T(),n=0;if(!fin(k))k=bk(k);while(fin(k)){n++;k=bk(k)}return n};
+const errs=()=>Object.keys(S.h).filter(i=>X[i]&&!S.h[i].ok);
+const pct=(a,b)=>b?Math.round(100*a/b)+" %":"–";
+const fr=x=>String(+x.toFixed(3)).replace(".",",");
+const num=s=>{s=s.trim().replace(",",".");if(!s)return NaN;const p=s.split("/");return p.length==2?p[0]/p[1]:+s};
+function rec(ok,x){const i=U.e;S.h[i]={ok:!!ok,t:Date.now()};if(M=="day")day().r[i]=ok?1:0;save();Object.assign(U,x,{res:ok?1:0})}
+
+/* ============ 4. INTERFACE ============ */
+function stats(open){
+ const m={};let a=0,b=0;
+ for(const k in S.d){const r=S.d[k].r;for(const i in r){if(!X[i])continue;const s=m[X[i].m]=m[X[i].m]||[0,0];s[1]++;b++;if(r[i]){s[0]++;a++}}}
+ const days=[];let k=T();for(let i=0;i<14;i++){days.unshift(k);k=bk(k)}
+ const bars=days.map(k=>{const d=S.d[k],n=d?Object.values(d.r).filter(Boolean).length:0,t=d?d.ids.length:MAX;return`<i title="${k} : ${n}/${t}" style="height:${d?Math.max(5,100*n/t):0}%"></i>`}).join("");
+ const rows=Object.entries(m).map(([n,v])=>`<div class=m><span>${n}</span><div><i style="width:${100*v[0]/v[1]}%"></i></div><small>${pct(v[0],v[1])}</small></div>`).join("");
+ return`<details class=card${open?" open":""}><summary>Statistiques</summary><div class=g><div><b>${streak()}</b>jours de série</div><div><b>${pct(a,b)}</b>de réussite</div><div><b>${b}</b>réponses</div></div>${rows}<p class=mu>Score des 14 derniers jours</p><div class=hd>${bars}</div></details>`}
+
+function done(d){
+ const n=d.ids.filter(i=>d.r[i]).length,er=errs().length;
+ return`<section class=card><h2>Bloc du jour terminé</h2><p class=big>${n}/${d.ids.length}</p><p>Le bloc est verrouillé jusqu’à demain : ce qui compte maintenant, c’est de comprendre tes erreurs, pas d’en refaire dix de plus.</p>${er?`<button class=p data-a=rev>Revoir mes erreurs (${er})</button>`:`<p class=mu>Aucune erreur à revoir pour le moment.</p>`}</section>`}
+
+function ex(e,d){
+ const a=U.res!=null,s=a||U.show,L=M=="rev",last=!L&&Object.keys(d.r).length>=d.ids.length;
+ const top=L?`<div class=act><b>Révision des erreurs, hors quota</b><button data-a=quit>Quitter</button></div>`
+  :`<div class=bar>${d.ids.map(i=>`<i class="${i in d.r?(d.r[i]?"ok":"ko"):(i==U.e?"cur":"")}"></i>`).join("")}</div>`;
+ const kind={qcm:"QCM",num:"Saisie numérique",ecrit:"Rédactionnel"}[e.ty];
+ let b="";
+ if(e.ty=="qcm")b=e.o.map((o,i)=>`<button class="o ${a?(i==e.a?"ok":(i==U.sel?"ko":"")):""}" data-a=pick data-v=${i}${a?" disabled":""}>${o}</button>`).join("");
+ if(e.ty=="num")b=`<div class=row><input id=in inputmode=decimal autocomplete=off placeholder="Réponse${e.u?" en "+e.u:""}" value="${U.val||""}"${a?" disabled":""}><button class=p data-a=num${a?" disabled":""}>Valider</button></div>`;
+ const hint=U.hint&&!s?`<div class=hint>${e.h}</div>`:"";
+ const ac=s?"":`<div class=act>${U.hint?"":`<button data-a=hint>Indice</button>`}${e.ty=="ecrit"?`<button class=p data-a=show>Voir le corrigé</button>`:""}</div>`;
+ const fb=a?`<p class="fb ${U.res?"ok":"ko"}">${U.res?"Correct ✓":"Incorrect ✗"}${e.ty=="num"?` <span class=mu>valeur attendue : ${fr(e.a)}${e.u?" "+e.u:""}</span>`:""}</p>`:"";
+ const vd=U.show&&!a?`<div class=act><button data-a=v data-v=1>J’avais juste</button><button data-a=v data-v=0>À revoir</button></div>`:"";
+ const nx=a?`<div class=act><button class=p data-a=next>${last?"Terminer":"Suivant"}</button></div>`:"";
+ return`${top}<section class=card><div><span class=ch>${e.m}</span><span class=ch>${e.t}</span><span class=ch>${kind}</span></div><p class=q>${e.q}</p>${e.f||""}${b}${hint}${ac}${fb}${s?`<ol class=c>${e.c}</ol>`:""}${vd}${nx}</section>`}
+
+function render(){
+ const d=day();
+ if(!U.e){
+  if(M=="rev"){U.e=RV.shift();if(!U.e)M="day"}
+  if(M=="day")U.e=d.ids.find(i=>!(i in d.r));
+ }
+ const e=X[U.e];
+ app.innerHTML=`<header><h1>10 par jour</h1><div><b title="Jours consécutifs avec le bloc terminé">🔥 ${streak()}</b><button data-a=th aria-label="Changer de thème">◐</button></div></header>${e?ex(e,d):done(d)}${stats(!e)}`;
+ typeset();
+}
+function typeset(){if(window.mjOK)MathJax.startup.promise=MathJax.startup.promise.then(()=>MathJax.typesetPromise([app])).catch(()=>{})}
+
+/* ============ 5. ACTIONS ============ */
+const A={
+ th(){S.th=S.th=="light"?"dark":"light";document.documentElement.dataset.theme=S.th;save()},
+ hint(){U.hint=1;render()},
+ show(){U.show=1;render()},
+ pick(v){if(U.res==null){rec(+v==X[U.e].a,{sel:+v});render()}},
+ num(){if(U.res!=null)return;const i=document.getElementById("in"),x=num(i.value),e=X[U.e];if(isNaN(x))return i.focus();rec(Math.abs(x-e.a)<=e.tol,{val:i.value});render()},
+ v(v){rec(+v);A.next()},
+ next(){U={};render()},
+ rev(){RV=errs();M="rev";U={};render()},
+ quit(){M="day";U={};render()}
+};
+app.addEventListener("click",ev=>{const b=ev.target.closest("[data-a]");if(b&&!b.disabled)A[b.dataset.a](b.dataset.v)});
+app.addEventListener("keydown",ev=>{if(ev.key=="Enter"&&ev.target.id=="in")A.num()});
+document.documentElement.dataset.theme=S.th||"dark";
+day();save();render();
+</script>
+</body>
+</html>
